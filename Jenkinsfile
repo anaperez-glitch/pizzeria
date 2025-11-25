@@ -1,8 +1,8 @@
-            pipeline {
+pipeline {
     agent any
 
     environment {
-        SONARQUBE = 'sonarqube'   // nombre configurado en Jenkins
+        SONARQUBE = 'sonarqube'
     }
 
     stages {
@@ -25,14 +25,17 @@
             }
         }
 
-stage('Deploy') {
-    steps {
-        sh '''
-            echo "Copiando archivos al volumen compartido..."
-            rm -rf /web/*           # Limpia el contenido anterior
-            cp -r Pizzeria/* /web/  # Copia la nueva versión
-            echo "Deploy completado!"
-        '''
-    }
-}
+        stage('Deploy') {
+            steps {
+                sh '''
+                    echo "Copiando archivos al volumen compartido..."
+                    rm -rf /web/*           # Limpia el contenido anterior
+                    cp -r Pizzeria/* /web/  # Copia la nueva versión
+                    echo "Deploy completado!"
+                '''
+            }
+        }
 
+    }  // <-- cierre de stages
+
+}  // <-- cierre de pipeline
