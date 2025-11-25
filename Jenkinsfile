@@ -28,7 +28,7 @@
         stage('Deploy') {
             steps {
                 sh 'echo "Copiando archivos al volumen de Nginx..."'
-                sh 'cp -r * /web/'
+                sh 'cp -r * /app/'
                 sh 'docker restart app_web'
             }
         }
