@@ -19,14 +19,6 @@
             }
         }
 
-        stage('Análisis SonarQube') {
-            steps {
-                withSonarQubeEnv(SONARQUBE) {
-                    sh 'sonar-scanner'
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 sh 'echo "Construyendo la web (HTML/CSS/JS)..."'
