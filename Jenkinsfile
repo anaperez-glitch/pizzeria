@@ -25,12 +25,14 @@
             }
         }
 
-        stage('Deploy') {
-            steps {
-                sh 'echo "Copiando archivos al volumen de Nginx..."'
-                sh 'cp -r * /app/'
-                sh 'docker restart app_web'
-            }
-        }
+stage('Deploy') {
+    steps {
+        sh '''
+            echo "Copiando archivos al volumen compartido..."
+            rm -rf /web/*           # Limpia el contenido anterior
+            cp -r Pizzeria/* /web/  # Copia la nueva versión
+            echo "Deploy completado!"
+        '''
     }
 }
+
