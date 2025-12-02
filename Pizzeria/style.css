@@ -1,7 +1,7 @@
 /* style.css */
 :root{
   --bg:#fafafa;
-  --card:#ffffff;
+  --card:#666;
   --accent:#c0392b;
   --muted:#666;
   --radius:10px;
@@ -26,3 +26,4 @@ fieldset{margin:14px 0;padding:12px;border-radius:8px;border:1px solid #eee}
 .actions{margin-top:14px}
 button{background:var(--accent);color:#fff;border:0;padding:10px 16px;border-radius:8px;cursor:pointer}
 #message{margin-top:12px;color:var(--muted)}
+
