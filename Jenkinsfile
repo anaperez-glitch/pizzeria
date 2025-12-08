@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        SONARQUBE = 'sonarqube'
-    }
-
     stages {
 
         stage('Checkout') {
@@ -15,7 +11,7 @@ pipeline {
 
         stage('Validación') {
             steps {
-                sh 'echo "Ejecutando pruebas/linter..."'
+                sh 'echo "Ejecutando validaciones básicas..."'
             }
         }
 
@@ -27,15 +23,10 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh '''
-                    echo "Copiando archivos al volumen compartido..."
-                    rm -rf /web/*           # Limpia el contenido anterior
-                    cp -r Pizzeria/* /web/  # Copia la nueva versión
-                    echo "Deploy completado!"
-                '''
+                sh 'echo "Copiando archivos al volumen de Nginx..."'
+                sh 'cp -r * /web/'
+                sh 'docker restart app_web'
             }
         }
-
-    }  // <-- cierre de stages
-
-}  // <-- cierre de pipeline
+    }
+}
